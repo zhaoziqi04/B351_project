@@ -4,3 +4,5 @@ Our object is to train our neural networks on two different datasets generated b
 Because tensorflow has so many different versions and typically they are incompatible with one another. So I strong recommend people to run our program on google colab: 
 To run the game: https://colab.research.google.com/drive/1R-5YqbldX9JY4Jtfhxq_DlyVyaRST45t
 To train the neural network: https://colab.research.google.com/drive/12-GQSKUpiKudUVuR7FCqmYE_vTx9ZWaQ
+Tensorflow version: 2.2.0-rc3
+Keras version: 2.3.1
