@@ -58,6 +58,32 @@ class RandomPlayer(BasePlayer):
         options = list(board.getAllValidMoves())
         return self.random.choice(options)
 
+class ManualPlayer(BasePlayer):
+    def __init__(self, max_depth=None):
+        BasePlayer.__init__(self, max_depth)
+
+    def findMove(self, trace):
+        board = Board(trace)
+        opts = "  "
+        for c in range(6):
+            opts += " "+(str(c+1) if board.isValidMove(c) else ' ')+"  "
+
+        while True:
+            if(board.turn == 0):
+                print("\n")
+                board.printSpaced()
+                print(opts)
+                pit = input("Pick a pit (P1 side): ")
+            else:
+                print("\n")
+                print(" " + opts[::-1])
+                board.printSpaced()
+                pit = input("Pick a pit (P2 side): ")
+            try: pit = int(pit) - 1
+            except ValueError: continue
+            if board.isValidMove(pit):
+                return pit
+
 class PlayerMM(BasePlayer):
     def max_v(self, board, depth):
         moves = board.getAllValidMoves()

@@ -1,11 +1,11 @@
 import numpy as np
 import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
-from keras.models import load_model
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Flatten
+from tensorflow.keras.models import load_model
 import tensorflow as tf
 import pandas as pd
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 from keras.callbacks import EarlyStopping
 
 data = pd.read_csv("ABDataFinal.csv")
@@ -61,7 +61,7 @@ es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=5)
 model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer=keras.optimizers.Adam(),
               metrics=['accuracy'],
-              callbacks=[es])
+              )
 history = model.fit(train_X, train_y,batch_size=batch_size,epochs=epochs,verbose=1,validation_data=(val_X, val_y))
 
 model.save('my_model')

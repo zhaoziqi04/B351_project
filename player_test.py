@@ -56,15 +56,17 @@ def player_battle(player_one, player_two, traces):
       p2_wins += 0.5
   percent_wins = p2_wins / total_games * 100 / 2
   print(str(np.round(time.perf_counter() - start_time, decimals=2)) + " seconds to complete")
+  #print(percent_wins)
   return percent_wins
 
 def get_player_name(player):
     p_name = player.__class__.__name__
+    #print(p_name)
     if p_name == "PlayerDP":
         p_name = p_name + str(player.max_depth)
     if p_name == "NNplayer":
         p_name = player.name
-        return p_name
+    return p_name
 
   #run a round robin with each mancala agent in the players array and print the results
 def round_robin(players):
@@ -75,6 +77,8 @@ def round_robin(players):
     percent_wins = player_battle(player_set[0], player_set[1], traces)
     p1_name = get_player_name(player_set[0])
     p2_name = get_player_name(player_set[1])
+    #print(len(traces) * 2)
+    #print(player_set[1])
     print(p2_name + " wins " + str(percent_wins) + " percent of " + str(len(traces) * 2) + " games against " + p1_name)
   print("Round Robin Completed")
 
@@ -92,5 +96,9 @@ MC_player = PlayerMCTS(expand_prob=0.3, limit=20)
 random_player = RandomPlayer()
 
 players = [MC_NNPlayer, AB_NNPlayer, AB_low_player, AB_med_player,AB_high_player, MC_player, random_player]
-players = [random_player, MC_NNPlayer, AB_NNPlayer, MC_player]
+for i in players:
+    print(get_player_name(i))
+    print(i)
+
+
 round_robin(players)
